@@ -1,0 +1,149 @@
+body {
+    background: #111;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+nav {
+    background: #222;
+    padding: 15px;
+}
+
+nav a {
+    color: #00ffcc;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    background: crimson;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.game-box {
+    border: 2px solid white;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* --- New Broken Calculator Extension Styles --- */
+.calc-container {
+    background: #1a1a1a;
+    border: 2px dashed #00ffcc; 
+    padding: 20px;
+    box-shadow: 8px 8px 0px #000;
+    transform: rotate(-1.5deg); /*  tilted for the "broken" effect */
+    width: 320px;
+    margin: 30px auto; 
+    text-align: left;
+}
+
+.brand {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.screen {
+    background-color: #000;
+    border: 1px solid #333;
+    color: #00ffcc; 
+    font-size: 2rem;
+    text-align: right;
+    padding: 10px;
+    margin-bottom: 15px;
+    height: 80px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.screen #expression {
+    font-size: 1rem;
+    color: #888;
+    text-align: right;
+}
+
+.screen #display {
+    font-size: 2rem;
+    color: #00ffcc;
+    text-align: right;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+/* Specific calculator button overrides */
+.keypad button {
+    margin: 0; 
+    padding: 15px 5px;
+    background: #262626;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid #444;
+    transition: transform 0.05s ease;
+}
+
+.keypad button:active {
+    transform: scale(0.96);
+}
+
+.keypad button:nth-child(odd) {
+    transform: translateY(-2px);
+    background-color: #202020;
+}
+
+/* Color accents for math operators */
+.keypad button:nth-child(4n) {
+    background-color: #3d141d; /* Dark crimson tint */
+    color: #ff4d6d;
+}
+
+/* Equal button styling */
+.keypad .equals-btn {
+    grid-column: span 3;
+    background-color: crimson !important;
+}
+
+/* Clear button styling */
+.keypad .clear-btn {
+    background-color: #441111 !important;
+    color: #ff4d4d !important;
+}
+
+/* Shake animation for the calculator container */
+.shake-intense {
+    animation: shake 0.02s ease-in-out infinite;
+    border-color: #ff0000 !important; /* Changes the border to bright red while shaking */
+    box-shadow: 0px 0px 20px #ff0000 !important;
+}
+
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg) rotate(-1.5deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg) rotate(-1.5deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg) rotate(-1.5deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg) rotate(-1.5deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg) rotate(-1.5deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg) rotate(-1.5deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg) rotate(-1.5deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg) rotate(-1.5deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg) rotate(-1.5deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg) rotate(-1.5deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg) rotate(-1.5deg); }
+}
