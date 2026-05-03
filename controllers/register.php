@@ -9,14 +9,14 @@ $user_username = '';
 $user_email = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 1. Capture and sanitize form data
+    //  Capture and sanitize form data
     $first_name = trim($_POST['first_name'] ?? '');
     $user_username = trim($_POST['username'] ?? '');
     $user_email = trim($_POST['email'] ?? '');
     $user_password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
 
-    // 2. Validate form input
+    //  Validate form input
     if (empty($first_name)) {
         $errors[] = "First Name is required.";
     }
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Passwords do not match.";
     }
 
-    // 3. If validation passes, check database & register
+    //  If validation passes, check database & register
     if (empty($errors)) {
         $userModel = new UserModel();
 

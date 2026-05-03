@@ -38,11 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['is_admin'] = (int)$user['is_admin'];
             $_SESSION['iq'] = $user['final_iq'] !== null ? (int)$user['final_iq'] : (int)$user['starting_iq'];
 
-            if (!str_ends_with($redirect, '.php')) {
-                $redirect .= '.php';
+            // Redirect admins to dashboard, others to requested page
+            if ((int)$user['is_admin'] === 1) {
+                header('Location: ../views/dashboard.php');
+            } else {
+                if (!str_ends_with($redirect, '.php')) {
+                    $redirect .= '.php';
+                }
+                header('Location: ../views/' . $redirect);
             }
-
-            header('Location: ../views/' . $redirect);
             exit();
         }
 

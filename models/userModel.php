@@ -82,7 +82,42 @@ class UserModel {
     }
 
 
+    
+     //Update user account details (for admin use).
+  
+    public function updateUser($userId, $firstName, $username, $email, $isAdmin, $startingIq, $finalIq) {
+        $sql = "UPDATE users 
+                SET first_name = :first_name, username = :username, email = :email, 
+                    is_admin = :is_admin, starting_iq = :starting_iq, final_iq = :final_iq
+                WHERE id = :id";
+                
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            ':first_name' => $firstName,
+            ':username' => $username,
+            ':email' => $email,
+            ':is_admin' => $isAdmin,
+            ':starting_iq' => $startingIq,
+            ':final_iq' => $finalIq,
+            ':id' => $userId
+        ]);
+    }
+
+  
+     // Delete a user by ID (admin only, prevents deleting self).
+    
+    public function deleteUserById($userId, $currentUserId) {
+        if ($userId == $currentUserId) {
+            return false; // Prevent self-deletion
+        }
+        $sql = "DELETE FROM users WHERE id = :id AND is_admin = 0";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([':id' => $userId]);
+    }
+
+  
      // Retrieve all users for the admin dashboard.
+    
     public function getAllUsers() {
         $sql = "SELECT id, username, email, first_name, is_admin, starting_iq, final_iq FROM users";
         $stmt = $this->db->query($sql);
